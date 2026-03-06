@@ -1,0 +1,498 @@
+.auth-container {
+	display: flex;
+	height: 100vh;
+	width: 100vw;
+}
+
+.auth-container .login-head-icon {
+	display: none;
+	justify-content: center;
+	margin: 2rem auto 1rem;
+}
+/* Left Section (Images) */
+.auth-container .left-section {
+	width: 50%;
+	background-color: #e25022;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.auth-container .left-section img {
+	width: 100%;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+/* Right Section (Forms) */
+.auth-container .right-section {
+	width: 60%;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	flex-direction: column;
+	padding: 20px;
+}
+
+/* Form Container */
+.auth-container .form-container {
+	width: 100%;
+	max-width: 400px;
+}
+
+/* Tabs */
+.auth-container .tabs {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+.auth-container .tab {
+	cursor: pointer;
+	padding: 10px 20px;
+	font-weight: bold;
+	color: gray;
+	border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+	color: #e25022;
+	border-bottom: 2px solid #e25022;
+}
+
+/* Buttons */
+.login-button {
+	background-color: #e25022;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	text-align: center;
+	cursor: pointer;
+	margin-top: 15px;
+}
+
+/* Social Buttons */
+.social-buttons {
+	margin-top: 20px;
+}
+
+/* Responsive Layout */
+@media screen and (max-width: 900px) {
+	.auth-container {
+		flex-direction: column;
+		height: auto;
+	}
+
+	.left-section {
+		width: 100%;
+		height: 40vh;
+		padding: 10px;
+	}
+
+	.right-section {
+		width: 100%;
+		padding: 30px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.left-section {
+		height: 30vh;
+	}
+
+	.form-container {
+		max-width: 90%;
+	}
+
+	.login-button {
+		font-size: 14px;
+	}
+}
+
+.image-section {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 24px;
+	gap: 16px;
+}
+
+/* Large Image (Left) */
+.large-image {
+	flex: 1 1 50%;
+	max-width: 500px;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.large-image img {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	display: block;
+}
+
+.auth-field-conatiner {
+	max-height: 100vh;
+	overflow-x: scroll;
+}
+/* Right Column (Two Smaller Images) */
+.right-column {
+	flex: 1 1 40%;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 400px;
+}
+
+.small-image {
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.small-image img {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
+	display: block;
+}
+
+/* Logo Styling */
+.logo {
+	width: 100%;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	margin-top: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.image-section {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.large-image,
+	.right-column {
+		flex: 1 1 100%;
+		max-width: 100%;
+	}
+}
+
+.auth-back-btn {
+	color: black !important;
+	font-size: 1rem !important;
+	font-weight: 900;
+	left: -10px;
+	top: 20px;
+	justify-content: start !important;
+	margin-bottom: 2rem !important;
+}
+.auth-back-btn svg {
+	font-size: 1rem !important;
+}
+
+.login-auth-wrapper {
+	display: contents;
+	min-height: 90vh;
+	width: 100%;
+	max-width: 400px;
+	margin: auto;
+	padding: 40px 20px;
+	text-align: center;
+}
+.auth-title {
+	width: 100%;
+	text-align: start;
+	font-weight: bold !important;
+	margin: 10px 0 5px;
+}
+
+.login-auth-wrapper .auth-subtitle {
+	color: gray;
+	margin-bottom: 1rem;
+}
+
+/* Input Group (Label Above Input) */
+.login-auth-wrapper .auth-input-group {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.login-auth-wrapper .auth-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 5px;
+}
+
+.login-auth-wrapper .auth-input-field {
+	width: 100%;
+}
+
+/* Forgot Password */
+.login-auth-wrapper .auth-forgot-password {
+	text-align: right;
+	color: var(--color-orange);
+	cursor: pointer;
+}
+
+/* Login Button */
+.login-auth-wrapper .auth-login-btn {
+	background-color: #d9534f !important;
+	color: white !important;
+	margin-top: 10px;
+	padding: 12px 0;
+	font-size: 16px;
+}
+
+/* Register Now */
+.login-auth-wrapper .auth-register-text {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+.login-auth-wrapper .auth-register-link {
+	color: #d9534f;
+	font-weight: bold;
+	cursor: pointer;
+	margin-top: -8px;
+}
+
+/* OAuth Login */
+/* Container for OAuth buttons */
+
+/* General OAuth button styling */
+
+.oauth-btn:hover {
+	background-color: #f5f5f5;
+	border-color: #bbb;
+}
+
+/* OAuth icons */
+.oauth-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	width: 100%;
+	max-width: 300px;
+	margin: auto;
+}
+
+/* Google Button Wrapper */
+
+.oauth-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: none;
+	font-size: 16px;
+	height: 50px;
+	border-radius: 8px;
+	padding: 12px 16px;
+	border: 1px solid #ddd;
+	background-color: white;
+	color: #333;
+	transition: all 0.3s ease-in-out;
+}
+
+.oauth-icon {
+	margin-right: 8px;
+}
+
+.facebook-btn {
+	border: 1px solid #1877f2;
+	color: #1877f2;
+}
+
+/* rgister page  */
+
+.register-container {
+	max-width: 400px;
+	margin: 0 auto;
+	text-align: start;
+}
+
+.register-container register-title {
+	font-size: 28px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.register-container .register-subtitle {
+	font-size: 16px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+/* Input group spacing */
+.register-container .input-group {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+/* Always visible label */
+.register-container .input-label {
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	margin-bottom: 5px;
+	display: block;
+}
+
+/* Signup Button */
+.register-container .register-button {
+	background-color: #c1502e !important;
+	color: white;
+	font-size: 18px;
+	padding: 12px;
+	margin-top: 10px;
+	border-radius: 8px;
+}
+
+.register-container .register-button:hover {
+	background-color: #a43f24 !important;
+}
+
+/* Footer */
+.register-container .register-footer {
+	margin-top: 15px;
+	font-size: 14px;
+}
+
+/* Login link */
+.register-container .login-link {
+	color: #e25022;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+/* forgot password  */
+
+.forgot-container {
+	max-width: 400px;
+	margin: 0 auto;
+	text-align: start;
+}
+
+.forgot-subtitle {
+	text-align: start;
+	color: #666;
+	font-size: 0.95rem;
+	margin-bottom: 1.5rem;
+}
+
+.input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.required {
+	color: red;
+}
+
+.forgot-container .forgot-button {
+	background-color: var(--color-orange) !important;
+	color: white !important;
+	margin-top: 10px;
+	padding: 12px 0;
+	font-size: 16px;
+}
+
+.forgot-container .forgot-footer {
+	margin-top: 1rem;
+	font-size: 0.9rem;
+	text-align: center;
+}
+.forgot-input-group {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin: 1rem 0;
+}
+
+.forgot-container .register-link {
+	color: var(--color-orange);
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.resend-link {
+	color: var(--color-orange);
+	cursor: pointer;
+	font-weight: bold;
+	text-decoration: none;
+	margin-top: -8px;
+}
+
+.register-link:hover,
+.resend-link:hover {
+	text-decoration: underline;
+}
+
+/* OTP Input */
+.otp-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.otp-box {
+	width: 3rem;
+	height: 3rem;
+	text-align: center;
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.otp-box:focus {
+	border-color: #007bff;
+	outline: none;
+	box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+	.forgot-container {
+		padding: 1.5rem 0;
+	}
+
+	.otp-box {
+		width: 2rem;
+		height: 2rem;
+		font-size: 1rem;
+	}
+}
+
+/* confirm passwprd */
+
+.reset-password-container .reset-password-btn {
+	background-color: var(--color-orange);
+}
+
+@media (max-width: 900px) {
+	.auth-container .login-head-icon {
+		display: flex;
+	}
+	.auth-container .left-section {
+		width: 0%;
+		display: none;
+	}
+	.auth-container .right-section {
+		max-width: 98vw;
+		margin: auto;
+		width: 96%;
+		padding: 2rem 0;
+	}
+}

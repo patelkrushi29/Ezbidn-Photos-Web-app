@@ -1,0 +1,114 @@
+.add-inmate-form {
+	max-width: 500px;
+	margin: auto;
+	padding: 20px;
+	text-align: center;
+}
+
+.add-inmate-form__back-btn {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.add-inmate-form__title {
+	font-weight: 600;
+	margin-top: 20px;
+}
+
+.add-inmate-form__subtitle {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.add-inmate-form__container {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.add-inmate-form__field {
+	text-align: left;
+}
+
+.add-inmate-form__label {
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.add-inmate-form__label span {
+	color: red;
+}
+
+.add-inmate-form__buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.add-inmate-form__save-btn {
+	border-color: #d45d42 !important;
+	color: #d45d42 !important;
+}
+
+.add-inmate-form__next-btn {
+	background-color: #d45d42 !important;
+}
+
+.inmate-selection {
+	text-align: center;
+}
+
+.back-btn {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+}
+
+.title {
+	font-weight: 600;
+	margin-top: 20px;
+}
+
+.subtitle {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.inmate-card {
+	text-align: left;
+	padding: 15px;
+	border-radius: 10px;
+	margin-top: 20px;
+}
+
+.inmate-name {
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.inmate-id {
+	color: #d45d42;
+}
+
+.no-photos {
+	font-size: 12px;
+	color: #777;
+}
+
+.button-container {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.submit-btn {
+	background-color: #d45d42 !important;
+}
+
+.add-inmate-btn {
+	border-color: #d45d42 !important;
+	color: #d45d42 !important;
+}

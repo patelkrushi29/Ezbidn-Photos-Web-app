@@ -1,0 +1,139 @@
+/* Admin Navbar Base Styles */
+.admin-Adminnavbar {
+	background: linear-gradient(to right, #fff, var(--color-lit-orange)) !important;
+	box-shadow: none;
+	transition: top 0.3s ease-in-out;
+}
+
+.admin-Adminnavbar.admin-hidden {
+	top: -80px;
+}
+
+.admin-nav-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 24px;
+}
+
+.admin-Adminnavbar-start-display {
+	display: flex;
+	align-items: center;
+}
+
+/* Logo */
+.admin-Adminnavbar .admin-logo-link {
+	text-decoration: none;
+	text-align: start;
+	position: absolute;
+	margin-left: 56px;
+}
+
+/* Navigation Links */
+.admin-nav-links {
+	display: flex;
+	gap: 24px;
+}
+
+.admin-nav-item {
+	text-decoration: none;
+	color: #333;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.admin-nav-item:hover {
+	color: #e75a1a;
+}
+
+.admin-nav-links .admin-nav-active {
+	color: var(--color-orange);
+}
+
+/* User Avatar */
+.admin-login-details-box .admin-user-avatar {
+	padding: 12px;
+	border-radius: 30px;
+	background-color: #333;
+	color: whitesmoke;
+	cursor: pointer;
+}
+
+.admin-login-details-box {
+	display: flex;
+	justify-content: space-between;
+	min-width: 7rem;
+}
+
+/* Mobile Menu Icon */
+.admin-menu-icon {
+	display: none;
+	color: #e75a1a;
+}
+
+@media (max-width: 900px) {
+	.admin-nav-links {
+		display: none;
+	}
+
+	.admin-menu-icon {
+		display: block;
+	}
+}
+
+/* Mobile Drawer */
+.admin-mobile-drawer .MuiDrawer-paper {
+	background: linear-gradient(to right, #fff, #fef7f1);
+	width: 100%;
+	height: 100%;
+}
+
+.admin-mobile-drawer-content {
+	display: flex;
+	flex-direction: column;
+	top: 0;
+	width: 80%;
+	padding-top: 20px;
+	margin: 0 auto;
+	min-width: 300px;
+	max-width: 600px;
+}
+
+.admin-drawer-header {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	padding: 16px;
+	align-items: center;
+}
+
+.admin-drawer-close {
+	position: relative;
+	background-color: var(--color-orange);
+	color: whitesmoke;
+	right: 2rem;
+}
+
+.admin-drawer-close:hover {
+	background-color: var(--color-orange);
+	opacity: 0.8;
+}
+
+/* Mobile Menu */
+.admin-mobile-menu {
+	width: 100%;
+	text-align: center;
+}
+
+.admin-mobile-menu-item {
+	text-decoration: none;
+	color: #333;
+	font-size: 18px;
+	padding: 12px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.admin-mobile-menu-item:hover {
+	color: var(--color-orange);
+}

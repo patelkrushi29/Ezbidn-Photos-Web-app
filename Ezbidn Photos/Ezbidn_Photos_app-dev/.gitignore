@@ -1,0 +1,126 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-error.log
+dist/
+build/
+# .env
+.env.local
+.env.development
+.env.production
+.env.test
+# *.env
+
+# Logs
+logs
+*.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+lerna-debug.log
+
+# Editor/IDE Files
+.vscode/
+.idea/
+*.iml
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System Files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Build artifacts
+*.out
+*.lock
+*.gz
+*.map
+*.zip
+*.bak
+*.tmp
+
+# OS generated files
+*.DS_Store
+*.AppleDouble
+*.LSOverride
+
+# Git
+*.orig
+*.rej
+*.patch
+
+# Coverage files
+coverage/
+*.lcov
+.nyc_output/
+
+# Testing
+jest/
+test-results/
+cypress/screenshots/
+cypress/videos/
+
+# Webpack
+.cache/
+.next/
+.nuxt/
+.happypack/
+
+# React / Vite
+.vite/
+.vite-cache/
+.idea/
+node_modules/
+build/
+dist/
+*.lock
+.pnp/
+.pnp.js
+.pnp.cjs
+
+# VSCode Config Files
+*.code-workspace
+*.history
+.history/
+
+# Firebase/Deployment
+firebase-debug.log
+firebase.json
+.firebaserc
+*.firebase/
+
+# API/Swagger Docs
+swagger.json
+swagger.yaml
+
+# Mac System files
+__MACOSX/
+
+# dotenv
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Production
+public/uploads/
+public/static/
+
+# Miscellaneous
+*.bak
+*.tmp
+*.swp
+*.swo
+*.seed
+*.pid
+*.seed.js
+*.log
+*.log.*
+
+# SASS / SCSS
+.sass-cache/
+*.css.map

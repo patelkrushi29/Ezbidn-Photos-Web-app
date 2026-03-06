@@ -1,0 +1,61 @@
+.faq-container {
+	max-width: 800px;
+	margin: 3rem auto;
+	padding: 20px;
+	min-height: 60vh;
+}
+
+.faq-container .faq-heading {
+	font-size: 24px;
+	font-weight: bold;
+	text-align: left;
+	padding: 1rem 0 2rem;
+}
+
+.faq-container .faq-accordion {
+	margin-bottom: 1rem;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.faq-container .faq-question {
+	background-color: #fff;
+	font-weight: 900;
+	padding: 0 16px;
+}
+
+.faq-container .faq-active {
+	background-color: var(--color-orange) !important;
+	color: white !important;
+}
+
+.faq-container .faq-question-text {
+	font-weight: 900;
+}
+
+.faq-container .faq-answer {
+	background-color: #f9f9f9;
+	padding: 16px;
+	font-size: 14px;
+}
+
+@media (max-width: 768px) {
+	.faq-container .faq-container {
+		padding: 15px;
+	}
+
+	.faq-container .faq-heading {
+		font-size: 20px;
+		text-align: center;
+	}
+}
+
+/* Ensures a fixed minimum height for an image placeholder */
+.faq-container .faq-image-placeholder {
+	min-height: 250px; /* Adjust this value as needed */
+	width: 100%;
+	background-color: #eee; /* Placeholder color */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

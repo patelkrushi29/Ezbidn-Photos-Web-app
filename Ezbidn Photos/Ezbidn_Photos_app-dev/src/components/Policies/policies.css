@@ -1,0 +1,23 @@
+.privacy-container {
+	width: 90%;
+	max-width: 1000px;
+	margin: auto;
+	padding: 20px;
+}
+
+.privacy-container .privacy-title {
+	font-weight: bold;
+	text-align: start;
+	margin: 2rem auto;
+}
+
+.privacy-container .privacy-subtitle {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.privacy-container .privacy-text {
+	line-height: 1.6;
+	text-align: justify;
+	margin: 1rem 0;
+}

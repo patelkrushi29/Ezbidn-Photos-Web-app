@@ -1,0 +1,47 @@
+.notification-panel {
+	position: fixed;
+	top: 6rem;
+	left: auto;
+	right: 2rem;
+	width: 360px;
+	max-width: 90%;
+	background: #fff;
+	border-radius: 10px;
+	padding: 15px;
+	box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+	z-index: 1000;
+	max-height: 380px;
+	overflow: auto;
+}
+
+.panel-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.notification-panel .close-btn {
+	color: whitesmoke;
+	background-color: black;
+}
+.notification-panel .close-btn:hover {
+	color: whitesmoke;
+	background-color: rgb(53, 53, 53);
+}
+.notification-section {
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
+
+.timestamp {
+	font-size: 12px;
+	color: gray;
+}
+
+@media (max-width: 400px) {
+	.notification-panel {
+		width: 90%;
+		left: 5%;
+	}
+}

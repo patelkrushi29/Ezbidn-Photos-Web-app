@@ -1,0 +1,49 @@
+.app-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 50vh;
+}
+
+.modal-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	max-width: 500px;
+	background-color: #fff;
+	border-radius: 12px;
+	padding: 24px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+	outline: none;
+	max-height: 80vh;
+	overflow: scroll;
+}
+
+.modal-close {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: #333;
+}
+
+.modal-content {
+	margin-top: 16px;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	margin-top: 24px;
+}
+
+/* Responsive padding */
+@media (max-width: 600px) {
+	.modal-container {
+		padding: 16px;
+		width: 95%;
+		max-width: 84vw;
+	}
+}

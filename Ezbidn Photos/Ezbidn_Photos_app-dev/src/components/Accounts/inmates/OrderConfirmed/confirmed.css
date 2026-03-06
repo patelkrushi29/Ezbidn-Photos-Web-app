@@ -1,0 +1,67 @@
+.order-confirmation-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.inmate-order-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 30px;
+	border-radius: 12px;
+	max-width: 600px;
+	width: 90%;
+}
+
+.inmate-order-card img {
+	width: 120px;
+	margin-bottom: 15px;
+}
+
+.order-title {
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #333;
+}
+
+.order-message {
+	font-size: 16px;
+	color: #666;
+	line-height: 1.5;
+	margin-bottom: 20px;
+}
+
+.order-button {
+	background-color: var(--color-orange);
+	color: white;
+	text-transform: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 8px;
+	transition: background 0.3s;
+}
+
+.order-button:hover {
+	background-color: #1565c0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+	.inmate-order-card {
+		padding: 20px;
+	}
+
+	.order-message {
+		text-align: justify;
+
+		font-size: 14px;
+	}
+
+	.order-button {
+		width: 100%;
+		padding: 12px;
+	}
+}

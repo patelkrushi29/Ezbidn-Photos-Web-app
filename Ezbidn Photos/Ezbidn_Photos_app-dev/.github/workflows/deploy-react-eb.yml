@@ -1,0 +1,50 @@
+name: Deploy React App to AWS Elastic Beanstalk (Dev)
+
+on:
+  push:
+    branches:
+      - dev  # Run this pipeline on changes to dev branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20  # Use the latest stable version
+
+      - name: Install Dependencies
+        run: npm install -f
+
+      - name: Build React App
+        run: npm run build
+
+      - name: Create deploy folder
+        run: |
+          mkdir deploy
+          cp -r node_modules deploy/
+          cp package.json deploy/
+          cp Procfile deploy/
+          cp -r dist deploy/
+          cp server.js deploy/
+
+      - name: Zip deploy folder
+        run: |
+          cd deploy
+          zip -r ../deploy.zip .  # Zip the entire 'deploy/' folder
+
+      - name: Deploy to Elastic Beanstalk (Dev)
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ vars.APP_NAME }}
+          environment_name: ${{ vars.ENV_NAME }}
+          version_label: "deploy-${{ github.run_number }}"
+          region: ${{ vars.AWS_REGION }}
+          deployment_package: deploy.zip

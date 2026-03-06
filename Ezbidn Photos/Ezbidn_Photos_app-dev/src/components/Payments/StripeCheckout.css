@@ -1,0 +1,99 @@
+.checkout-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+}
+
+.checkout-box {
+	width: 100%;
+	max-width: 420px;
+	padding: 24px;
+	border-radius: 16px;
+	background-color: #fff;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-title {
+	text-align: center;
+	font-weight: 600;
+	margin-bottom: 20px;
+	font-size: 1.4rem;
+}
+
+.payment-form {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 10px;
+}
+
+.card-input-container {
+	padding: 12px;
+	border: 1px solid #dcdcdc;
+	border-radius: 8px;
+	background-color: #fafafa;
+}
+
+.card-input {
+	background: transparent;
+	width: 100%;
+	font-size: 16px;
+}
+
+.pay-button {
+	margin-top: 8px;
+	height: 45px;
+	font-size: 16px;
+	font-weight: 500;
+	text-transform: none;
+}
+
+.payment-message {
+	margin-top: 12px;
+	color: green;
+	text-align: center;
+	font-size: 14px;
+}
+
+.saved-cards-title,
+.alternative-payment-title {
+	margin-top: 24px;
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
+.saved-cards-container {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin-top: 12px;
+}
+
+.saved-card {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	border-radius: 8px;
+	border: 1px solid #e0e0e0;
+	background-color: #fdfdfd;
+	transition: box-shadow 0.2s ease;
+}
+
+.saved-card:hover {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card-details {
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+}
+
+.use-card-button {
+	font-size: 12px;
+	padding: 4px 10px;
+	border-radius: 6px;
+	text-transform: none;
+}

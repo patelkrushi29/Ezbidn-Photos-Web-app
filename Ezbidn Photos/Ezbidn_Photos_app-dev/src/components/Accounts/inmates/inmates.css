@@ -1,0 +1,172 @@
+.inmate-container {
+	width: 96vw;
+	min-height: 70vh;
+}
+.inmate-sub-container {
+	padding: 20px;
+	width: 80%;
+	max-width: 1000px;
+	margin: auto;
+}
+.inmate-header-box {
+	display: flex;
+	justify-content: space-between;
+	margin: 1rem auto;
+}
+.inmate-header-box button {
+	display: flex;
+	align-items: center;
+	height: 2rem;
+	background-color: var(--color-orange);
+}
+.inmate-container .inmate-title {
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.inmate-container .inmate-count {
+	color: gray;
+	margin-bottom: 20px;
+}
+
+.inmate-container .inmate-stack {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
+
+.inmate-container .inmate-card {
+	display: flex;
+	align-items: center;
+	padding: 15px;
+	border-radius: 10px;
+	border: 1px solid rgb(231, 231, 231);
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.inmate-details-start {
+	display: flex;
+	justify-content: space-between;
+}
+
+.inmate-container .inmate-content {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.inmate-container .inmate-image-container {
+	overflow: hidden;
+	margin-right: 2rem;
+}
+
+.inmate-container .inmate-image {
+	min-height: 8rem;
+	min-width: 8rem;
+	border: 1px solid grey;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.inmate-container .inmate-button-group {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.inmate-container .inmate-highlight {
+	color: red;
+	font-weight: bold;
+}
+
+.inmate-container .inmate-date {
+	color: gray;
+	font-size: 0.85rem;
+}
+
+.inmate-container .inmate-reorder-button {
+	background-color: var(--color-orange);
+}
+
+.inmate-container .inmate-view-button {
+	color: var(--color-orange);
+	border: 1px solid var(--color-orange);
+}
+.color-orange {
+	color: var(--color-orange);
+}
+
+.inmate-container .inmate-modal-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	width: 90%;
+	max-width: 1200px;
+}
+
+.delete-box {
+	background-color: #fff;
+	padding: 24px;
+	border-radius: 12px;
+	/* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
+	width: 100%;
+	max-width: 400px;
+	text-align: center;
+}
+
+/* Title */
+.delete-title {
+	font-weight: bold;
+	margin-bottom: 12px;
+}
+
+/* Delete Message */
+.delete-message {
+	color: #555;
+	margin-bottom: 24px;
+}
+
+/* Actions */
+.delete-actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+}
+.delete-actions .cancel-button {
+	color: var(--color-orange);
+	border: 1px solid var(--color-orange);
+}
+
+/* Delete Button */
+.delete-button {
+	background-color: #d32f2f;
+	color: #fff;
+}
+
+/* Responsive Box */
+@media (max-width: 600px) {
+	.inmate-container .inmate-content {
+		flex-direction: column;
+	}
+	.inmate-container .inmate-button-group {
+		flex-direction: row;
+		align-items: center;
+	}
+	.inmate-button-group .inmate-view-button {
+		margin-top: 0;
+	}
+	.inmate-sub-container {
+		width: 94%;
+		padding: 2rem 4px;
+	}
+	.delete-box {
+		padding: 16px;
+		width: 95%;
+	}
+}

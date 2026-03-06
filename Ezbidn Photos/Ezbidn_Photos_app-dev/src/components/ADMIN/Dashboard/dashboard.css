@@ -1,0 +1,5 @@
+.dashboard__container {
+	width: 100vw;
+	min-height: 80vh;
+	padding: 2rem 5rem;
+}

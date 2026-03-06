@@ -1,0 +1,53 @@
+.facility-rules-modal .MuiDialog-paper {
+	border-radius: 12px;
+	padding: 20px;
+}
+
+.facility-rules-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
+}
+
+.close-button {
+	position: absolute;
+	right: 1.5rem;
+	top: 1.5rem;
+}
+.close-button:hover {
+	color: red;
+}
+
+.facility-rules-content {
+	text-align: left;
+}
+
+.facility-rules-description {
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 16px;
+}
+
+.facility-rules-list {
+	padding: 0;
+}
+
+.facility-rule-item {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 12px;
+}
+
+.rule-icon {
+	background-color: #e57373;
+	color: white;
+}
+
+.agree-button {
+	width: 100%;
+	background-color: #d9534f;
+	margin-top: 16px;
+	font-size: 16px;
+}

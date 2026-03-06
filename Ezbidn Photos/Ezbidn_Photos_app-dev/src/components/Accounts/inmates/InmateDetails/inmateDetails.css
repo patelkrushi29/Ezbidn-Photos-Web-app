@@ -1,0 +1,48 @@
+.inmate-form {
+	border-radius: 8px;
+	width: 90%;
+}
+
+.input-field .MuiOutlinedInput-root {
+	border-radius: 8px;
+}
+
+.inmate-form .save-btn {
+	border-radius: 8px;
+	text-transform: none;
+	padding: 10px 20px;
+	border: 1px solid var(--color-orange);
+	color: var(--color-orange);
+	min-width: 8rem;
+}
+
+.inmate-form .next-btn {
+	background-color: var(--color-orange);
+	border-radius: 8px;
+	text-transform: none;
+	padding: 10px 20px;
+	min-width: 8rem;
+}
+.inmate-form .confirmAddress {
+	color: var(--color-orange);
+}
+
+.inmate-form .next-btn:hover {
+	background-color: var(--color-orange);
+}
+.inmate-form-buttom-group {
+	margin-top: 3rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+	.inmate-form {
+		padding: 15px;
+	}
+	.inmate-form-buttom-group {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		width: 100%;
+	}
+}

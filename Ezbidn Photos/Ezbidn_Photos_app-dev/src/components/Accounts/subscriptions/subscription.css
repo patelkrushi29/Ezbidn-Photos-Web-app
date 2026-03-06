@@ -1,0 +1,108 @@
+.subscription-container {
+	width: 96vw;
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	margin: auto;
+	padding: 40px 0;
+	min-height: 50vh;
+}
+
+.subscription-container .plans-wrapper,.subscription-title {
+	width: 80%;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 24px;
+}
+
+
+.subscription-container .plan-card {
+	background: white;
+	border-radius: 20px;
+	padding: 24px;
+	border: none;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
+	/* cursor: pointer; */
+}
+
+.subscription-container .plan-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1);
+}
+
+.subscription-container .plan-name {
+	background: var(--color-orange);
+	color: white;
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 0.9rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	box-shadow: 0 0 8px rgba(255, 165, 0, 0.3);
+}
+
+.subscription-container .plan-price {
+	font-size: 24px;
+	color: #222;
+	font-weight: 700;
+	margin-top: 8px;
+}
+
+.subscription-container .plan-benifite {
+	color: #555;
+	font-size: 15px;
+	margin-top: 8px;
+}
+
+.subscription-container .plan-features p {
+	font-size: 14px;
+	color: #333;
+	margin: 6px 0;
+}
+
+.subscription-container .buy-now-btn {
+	background: linear-gradient(to right, #ff7b00, #ff9900) !important;
+	color: white !important;
+	font-weight: bold;
+	border-radius: 8px;
+	padding: 8px 20px;
+	box-shadow: 0 4px 14px rgba(255, 123, 0, 0.3);
+	transition: background 0.3s ease;
+	margin-top: 15px;
+}
+
+.subscription-container .buy-now-btn:hover {
+	background: linear-gradient(to right, #ff8800, #ffaa00) !important;
+}
+
+.subscription-container .photo-count {
+	color: #888;
+	font-size: 14px;
+}
+
+
+.plan-benifite {
+	display: flex;
+	align-items: center;
+	gap: 8px; /* space between icon and text */
+  }
+  
+  .benefit-icon {
+	color: green; /* or use your theme color */
+	font-size: 20px; /* adjust as needed */
+  }
+
+  .plan-lable {
+	font-size: 15px;
+	margin-top: 15px;
+	margin-bottom: 8px;
+  }
+
+  
+@media (min-width: 768px) {
+	.subscription-container .plans-wrapper {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

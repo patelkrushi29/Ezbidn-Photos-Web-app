@@ -1,0 +1,100 @@
+.payment-container {
+	width: 96vw;
+	margin: auto;
+}
+.payment-sub-container {
+	width: 80%;
+	margin: auto;
+
+	padding: 20px;
+}
+
+.payment-title {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 15px;
+}
+.payment-fieldset-container {
+	width: 100%;
+	margin: auto;
+}
+
+.payment-radio-group {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	/* width: 90%; */
+}
+
+.payment-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px;
+	border-radius: 10px;
+	border: 1px solid rgb(234, 234, 234);
+	border-radius: 20px;
+	transition: all 0.3s ease-in-out;
+}
+.payment-image-conatiner {
+	padding: 1rem;
+	border: 1px solid grey;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	min-width: 5rem;
+}
+
+.payment-option {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.payment-label {
+	font-weight: bold;
+}
+
+.payment-logo {
+	height: 30px;
+	width: auto;
+}
+
+.payment-radio {
+	color: var(--color-orange) !important;
+}
+
+.payment-container .payment-button {
+	width: 10rem;
+	margin: auto;
+	margin-top: 2rem;
+	background-color: var(--color-orange) !important;
+	color: white !important;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 8px;
+	text-align: center;
+}
+
+@media (max-width: 600px) {
+	.payment-container .payment-sub-container {
+		width: 96%;
+		padding: 15px;
+	}
+
+	.payment-card {
+		/* flex-direction: column; */
+		text-align: left;
+		padding: 15px;
+	}
+
+	.payment-logo {
+		height: 1.5rem;
+		margin-top: 5px;
+	}
+	.payment-image-conatiner {
+		padding: 0.6rem;
+	}
+}

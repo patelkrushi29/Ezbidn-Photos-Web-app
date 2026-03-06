@@ -1,0 +1,163 @@
+.shipping-container {
+	/* max-width: 500px; */
+	margin: auto;
+	padding: 0 20px;
+	width: 90%;
+	/* background: #fff; */
+	border-radius: 10px;
+	/* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.shipping-title {
+	text-align: center;
+	font-weight: 900;
+}
+
+.shipping-subtitle {
+	text-align: center;
+	color: #666;
+	padding: 0 2rem;
+	/* width: 70%; */
+	margin: 0.5rem auto 1rem !important;
+}
+
+.inmate-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	margin: 10px 0;
+	border-radius: 12px;
+	border: 1px solid var(--color-grey);
+	background: #f9f9f9;
+}
+
+.shipping-container .subscription-details {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px;
+	margin: 2rem 0 1rem;
+	border-radius: 12px;
+	border: 1px solid var(--color-grey);
+	background: var(--color-orange);
+}
+
+.subscription-details .plan-info,
+.plan-name-box {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.plan-name-box .plan-label {
+	font-weight: 900;
+	background-color: #a3a2a2;
+	padding: 0.5rem 2rem;
+	margin-left: -20px;
+	border-radius: 0 20px 20px 0;
+}
+.plan-name-box .plan-price {
+	font-weight: 900;
+	color: whitesmoke;
+	padding-left: 1rem;
+}
+.plan-benefits-box {
+	padding: 0 1rem;
+	color: whitesmoke;
+}
+
+.shipping-detail-title {
+	text-align: start;
+}
+
+.change-btn {
+	background: var(--color-orange) !important;
+	color: white;
+	text-transform: none;
+}
+
+.change-plan-btn {
+	margin-top: 4px !important;
+	background: whitesmoke !important;
+	color: var(--color-orange) !important;
+	text-transform: none;
+}
+
+.plan-info {
+	flex: 1;
+}
+
+.plan-price {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.shipping-container .photo-count {
+	font-weight: bold;
+	color: whitesmoke;
+	text-align: center;
+}
+
+.shipping-container .terms-container {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.shipping-container .link {
+	color: var(--color-orange);
+	font-weight: bold;
+}
+
+.shipping-container .error-text {
+	color: red;
+	font-size: 14px;
+}
+
+.ship-submit-btn {
+	display: flex;
+	justify-content: center;
+}
+
+.shipping-container .submit-btn {
+	margin-top: 10px;
+	background: var(--color-orange);
+	color: white;
+	width: 8rem;
+}
+
+@media (max-width: 768px) {
+	.shipping-subtitle {
+		text-align: justify;
+		padding: 4px 0;
+	}
+	.inmate-details {
+		flex-direction: column;
+	}
+	.inmate-details .change-btn {
+		margin-top: 1rem;
+		width: 100%;
+	}
+	.ship-submit-btn {
+		margin-top: 2rem;
+	}
+	.shipping-container .subscription-details {
+		flex-direction: column;
+	}
+}
+
+@media (max-width: 480px) {
+	.shipping-container {
+		width: 98%;
+		padding: 16px 4px;
+	}
+	.subscription-details .plan-info {
+		flex-direction: column;
+		gap: 10px;
+	}
+	.shipping-container .subscription-details {
+		flex-direction: column;
+	}
+}

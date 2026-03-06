@@ -1,0 +1,80 @@
+/* inmates.css */
+.add-inmate-container {
+}
+.add-inmate-container .add-inmate-title {
+	font-weight: 600 !important;
+	text-align: center;
+	margin: 1rem 0;
+}
+
+.add-inmate-container .add-inmate-subtitle {
+	color: #6b7280 !important;
+	text-align: center;
+	margin-bottom: 3rem;
+}
+
+.add-inmate-container .add-inmate-options-container {
+	display: flex;
+	gap: 1rem;
+	width: 100%;
+	justify-content: center;
+}
+
+.add-inmate-container .add-inmate-option-card {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	width: 45%;
+	border-radius: 10px !important;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	border: 2px solid transparent;
+}
+
+.add-inmate-container .add-inmate-option-card.selected {
+	background-color: var(--color-blue) !important;
+	color: white !important;
+	border: 2px solid var(--color-orange) !important;
+}
+
+.add-inmate-container .add-inmate-card-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
+.add-inmate-container .add-inmate-image {
+	width: 6rem;
+	height: 6rem;
+	object-fit: contain;
+}
+
+.add-inmate-container .add-inmate-next-button {
+	margin: auto !important;
+	margin-top: 1.5rem !important;
+	padding: 0.75rem 2rem !important;
+	background-color: var(--color-orange);
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+	border-radius: 8px !important;
+	text-transform: none !important;
+	width: 50%;
+}
+
+@media (max-width: 768px) {
+	.add-inmate-container .add-inmate-options-container {
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.add-inmate-container .add-inmate-option-card {
+		width: 80%;
+		margin: auto;
+	}
+	.add-inmate-container .add-inmate-next-button {
+		width: 90%;
+		margin: auto;
+	}
+}
