@@ -1,0 +1,36 @@
+name: Deploy to AWS Elastic Beanstalk (Dev)
+
+on:
+  push:
+    branches:
+      - dev  # Trigger pipeline on dev branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install -f 
+
+      - name: Archive Deployment Package
+        run: zip -r deploy.zip . -x "*.git*" "*.github/*" "node_modules/*" 
+
+      - name: Deploy to Elastic Beanstalk (Dev)
+        uses: einaregilsson/beanstalk-deploy@v22
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ${{ vars.APP_NAME }}
+          environment_name: ${{ vars.ENV_NAME }}  
+          version_label: "deploy-${{ github.run_number }}"
+          region: us-west-1  # Change if needed
+          deployment_package: deploy.zip

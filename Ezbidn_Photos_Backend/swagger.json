@@ -1,0 +1,2503 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Project APIs",
+    "description": "This is the Developer API's"
+  },
+
+  "host": "api.ezbidn.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+
+  "parameters": {
+    "uuid": {
+      "name": "uuid",
+      "in": "header",
+      "type": "string"
+    },
+    "devicetype": {
+      "name": "devicetype",
+      "in": "header",
+      "type": "string",
+      "description": "Type of device",
+      "enum": ["web", "ios", "android"],
+      "default": "web"
+    },
+    "pageNo":{
+      "name": "pageNo",
+      "in": "path",
+      "required": true,
+      "type": "number",
+      "default": 1
+    },
+    "limit":{
+      "name": "limit",
+      "in": "path",
+      "required": true,
+      "type": "number",
+      "default": 10
+    },
+    "searchText":{
+      "name": "searchText",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "default": "null"
+    },
+    "inmateId": {
+      "name": "inmateId",
+      "in": "path",
+      "type": "string"
+    },
+    "tierId": {
+      "name": "tierId",
+      "in": "path",
+      "type": "string"
+    },
+    "id": {
+      "name": "id",
+      "in": "path",
+      "type": "string"
+    },
+    "userId":{
+      "name": "userId",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "default": "null"
+    },
+    "orderId": {
+      "name": "orderId",
+      "in": "path",
+      "type": "string"
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "profile_picture": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "customer_id": {
+            "type": "string"
+          }
+        }
+      },
+      "VerifyPassData": {
+        "type": "object",
+        "properties": {
+          "verificationId": {
+            "type": "integer"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          }
+        }
+      },
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserData"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessCommonResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          }
+        }
+      },
+      "SuccessVerifyPassResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "$ref": "#/components/schemas/VerifyPassData"
+          }
+        }
+      },
+      "SuccessProfileResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "$ref": "#/components/schemas/UserData"
+          }
+        }
+      },
+      "EmailExistResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":207
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "NotVerifiedResponse":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":210
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "BadResponse":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":400
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "AuthResponse":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":401
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "NotExistResponse": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":410
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "ServerResponse":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":500
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "SuccessResponseWithPagination": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "page": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "string"
+          },
+          "total": {
+            "type": "number"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+                "$ref": "#/components/schemas/UserData"
+            }
+          }      
+         }
+      },
+      "SuccessResponseInmate": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "inamteProfile": {
+                "type": "object"
+              },
+              "inmateLocation": {
+                "type": "object"
+              }
+            }
+
+          }      
+         }
+      },
+      "NoRecordFound":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":213
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "imageData": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "inmate_id": {
+            "type": "string"
+          },
+          "image_type": {
+            "type": "string",
+            "enum": ["local","google", "facebook", "instagram"]
+          },
+          "image": {
+            "type": "string"
+          }
+        }
+      },
+      "SuccessResponseImageUpload": {
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "$ref": "#/components/schemas/imageData"
+          }    
+         }
+      },
+      "RegisteredUser":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":214
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "OtherSocialUser":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":215
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":false
+          }
+        }
+      },
+      "ServerCheckoutResponse":{
+        "type": "object",
+        "properties": {
+          "customcode": {
+            "type": "integer",
+            "default":200
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "boolean",
+            "default":true
+          },
+          "data": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/api/v1/user/login": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+            }
+          },
+          "210": {
+            "description": "Not Verifiy Account",
+            "schema": {
+                  "$ref": "#/components/schemas/NotVerifiedResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "410": {
+            "description": "Email Not Exist",
+            "schema": {
+                  "$ref": "#/components/schemas/NotExistResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/socialLogin": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Social Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+            }
+          },
+          "214": {
+            "description": "Registered User",
+            "schema": {
+                  "$ref": "#/components/schemas/RegisteredUser"
+            }
+          },
+          "215": {
+            "description": "Other Social User",
+            "schema": {
+                  "$ref": "#/components/schemas/OtherSocialUser"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/guestLogin": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Guest Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponse"
+            }
+          }, 
+          "214": {
+            "description": "Registered User",
+            "schema": {
+                  "$ref": "#/components/schemas/RegisteredUser"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/register": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Register"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "207": {
+            "description": "Email Already Exist",
+            "schema": {
+                  "$ref": "#/components/schemas/EmailExistResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/verifyOtp": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Verify OTP"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/forgotPassword": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/Forgot Password"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "410": {
+            "description": "Email Not Exist",
+            "schema": {
+                  "$ref": "#/components/schemas/NotExistResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/resendOtp": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Resend OTP"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "410": {
+            "description": "Email Not Exist",
+            "schema": {
+                  "$ref": "#/components/schemas/NotExistResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/verifyPassOtp": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Verify Password OTP"
+              
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessVerifyPassResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/resetPassword": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Reset Password"
+             
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/viewProfile": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessProfileResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/editProfile": {
+      "put": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Edit Profile"
+              
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/editNotificationSetting": {
+      "put": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Edit Notify Alert"
+              
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/changePassword": {
+      "put": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Change Password"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/contactUsForm": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/ContactUs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/pricingTiers": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+         "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/imageUpload": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Image Upload"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseImageUpload"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/imageUploadedList/{inmateId}": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/deleteUploadedImage/{imageId}": {
+      "put": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/checkoutOrder": {
+      "post": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Checkout Order"
+              
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerCheckoutResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/getAllOrders": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/getOrderDetailsById/{orderId}": {
+      "get": {
+        "tags": [
+          "User APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/orderId" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/listUsers/{pageNo}/{limit}/{searchText}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/pageNo" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/searchText" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseWithPagination"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/listPricingTier": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/getPricingTierById/{tierId}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          { "$ref": "#/parameters/tierId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/updatePricingTier/{tierId}": {
+      "put": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          { "$ref": "#/parameters/tierId" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Add Pricing Tier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/listContactUsers/{pageNo}/{limit}/{searchText}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/pageNo" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/searchText" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/updateContactUsFlag/{id}": {
+      "put": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Reply Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/listOrders/{userId}/{pageNo}/{limit}/{searchText}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/userId" },
+          { "$ref": "#/parameters/pageNo" },
+          { "$ref": "#/parameters/limit" },
+          { "$ref": "#/parameters/searchText" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/getOrderDetailsById/{orderId}": {
+      "get": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/updateOrder/{id}": {
+      "put": {
+        "tags": [
+          "Admin APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/id" },
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Update Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/inmate/findFederalInmate/{inmateId}": {
+      "get": {
+        "tags": [
+          "Inamte APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          { "$ref": "#/parameters/inmateId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseInmate"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/inmate/saveInmate": {
+      "post": {
+        "tags": [
+          "Inamte APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "$ref":"#/definitions/Save Inmate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/inmate/inmateList": {
+      "get": {
+        "tags": [
+          "Inamte APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/inmate/getInmateDetailById/{id}": {
+      "get": {
+        "tags": [
+          "Inamte APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          { "$ref": "#/parameters/id" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessResponseInmate"
+            }
+          },
+          "213": {
+            "description": "No Record Found",
+            "schema": {
+                  "$ref": "#/components/schemas/NoRecordFound"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/inmate/removeInmate/{id}": {
+      "put": {
+        "tags": [
+          "Inamte APIs"
+        ],
+        "security": [
+          {
+            "ApiKeyAuth":[],
+            "PublicApiKeyAuth": []
+          }
+        ],
+        "description": "",
+        "parameters": [
+          { "$ref": "#/parameters/uuid" },
+          { "$ref": "#/parameters/devicetype" },
+          { "$ref": "#/parameters/id" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+                  "$ref": "#/components/schemas/SuccessCommonResponse"
+            }
+          },
+          "213": {
+            "description": "Bad Request",
+            "schema": {
+                  "$ref": "#/components/schemas/BadResponse"
+            }
+          },
+          "401": {
+            "description": "Authentication",
+            "schema": {
+                  "$ref": "#/components/schemas/AuthResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+                  "$ref": "#/components/schemas/ServerResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "ApiKeyAuth": {
+      "type": "apiKey",
+      "name": "x-auth-token",
+      "in": "header",
+      "description": "Logedin user's token"
+    },
+    "PublicApiKeyAuth": {
+      "type": "basic",
+      "name": "authorization",
+      "in": "header",
+      "description": "For Basic Authentication"
+    }
+  },
+ "definitions": {
+  "Login": {
+    "required": ["email", "password"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      }
+    }
+  },
+  "Social Login": {
+    "required": ["name", "email", "provider","provider_id","phone","profile_picture"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "provider": {
+        "type": "string",
+        "enum": ["google", "facebook"]
+      },
+      "provider_id": {
+        "type": "string"
+      },
+      "phone": {
+        "type": "string"
+      },
+      "profile_picture": {
+        "type": "string"
+      }
+    }
+  },
+  "Guest Login": {
+    "required": ["email"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      }
+    }
+  },
+  "Register": {
+    "required": ["name", "email", "phone","password"],
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "phone": {
+        "type": "string"
+      },
+      "password": {
+        "type": "string"
+      }
+    }
+  },
+  "Verify OTP": {
+    "required": ["email", "otp"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "otp": {
+        "type": "string"
+      }
+    }
+  },
+  "Forgot Password": {
+    "required": ["email"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      }
+    }
+  },
+  "Resend OTP": {
+    "required": ["email"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      }
+    }
+  },
+  "Verify Password OTP": {
+    "required": ["email","otp"],
+    "properties": {
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "otp": {
+        "type": "string"
+      }
+    }
+  },
+  "Reset Password": {
+    "required": ["verificationId","email", "newpassword"],
+    "properties": {
+      "verificationId": {
+        "type": "string"
+      },
+      "email": {
+        "format": "email",
+        "type": "string"
+      },
+      "newpassword": {
+        "type": "string"
+      }
+    }
+  },
+  "Edit Profile": {
+    "required": ["name"],
+    "properties": {
+      "name": {
+        "type": "string"
+      }
+    }
+  },
+  "Change Password": {
+    "required": ["oldPassword","newPassword"],
+    "properties": {
+      "oldPassword": {
+        "type": "string"
+      }, 
+      "newPassword": {
+        "type": "string"
+      }
+    }
+ },
+"ContactUs":  {
+  "required": ["email","description"],
+  "properties": {
+    "email": {
+      "format": "email",
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+},
+"Save Inmate":  {
+  "required": ["nameFirst", "nameMiddle", "nameLast", "sex","race", "age", "inmateNum", "faclCode", "faclName", "faclType", "faclURL", "releaseCode", "projRelDate", "actRelDate" ],
+  "properties": {
+    "nameFirst": {
+      "type": "string"
+    },
+    "nameMiddle": {
+      "type": "string"
+    },
+    "nameLast": {
+      "type": "string"
+    },
+    "sex": {
+      "type": "string"
+    },
+    "race": {
+      "type": "string"
+    },
+    "age": {
+      "type": "string"
+    },
+    "inmateNum": {
+      "type": "string"
+    },
+    "faclCode": {
+      "type": "string"
+    },
+    "faclName": {
+      "type": "string"
+    },
+    "faclType": {
+      "type": "string"
+    },
+    "faclURL": {
+      "type": "string"
+    },
+    "releaseCode": {
+      "type": "string"
+    },
+    "projRelDate": {
+      "type": "string"
+    },
+    "actRelDate": {
+      "type": "string"
+    }
+  }
+},
+"Add Pricing Tier":  {
+  "required": ["min_images", "max_images", "label", "price_cents","description"],
+  "properties": {
+    "min_images": {
+      "type": "string"
+    },
+    "max_images": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "price_cents": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    }
+  }
+},
+"Image Upload": {
+  "required": ["image", "inmate_id", "image_type"],
+  "properties": {
+   "image": {
+  "oneOf": [
+    {
+      "type": "string",
+      "format": "binary"
+    },
+    {
+      "type": "string",
+      "format": "uri"
+    }
+  ],
+  "description": "Image file upload (binary) or image URL (uri)."
+},
+    "inmate_id": {
+      "type": "string"
+    },
+    "image_type": {
+      "type": "string",
+      "enum": ["local","google", "facebook", "instagram"]
+    }
+  }
+},
+"Checkout Order": {
+  "required": ["inmate_id", "customer_id", "pricing_tier_id", "images"],
+  "properties": {
+    "inmate_id": {
+      "type": "string"
+    },
+    "customer_id": {
+      "type": "string"
+    },
+    "pricing_tier_id": {
+      "type": "string"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      }
+    }
+  }
+},
+"Reply Status": {
+  "required": ["is_replied"],
+  "properties": {
+    "is_replied": {
+      "type": "string",
+      "enum": ["0","1"]
+    }
+    }
+ },
+ "Update Order": {
+  "required": ["shipment_status","comment"],
+  "properties": {
+    "shipment_status": {
+      "type": "string",
+      "enum": ["processing", "shipped", "completed"]
+    },
+    "comment": {
+      "type": "string"
+    }
+    }
+ }
+}
+}
