@@ -1,4 +1,4 @@
 # Environment files - never commit credentials
-.env
-.env.*
 !.env.example
+config.bat
+node_modules

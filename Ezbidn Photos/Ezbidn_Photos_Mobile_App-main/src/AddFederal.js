@@ -6,7 +6,6 @@ import { useLoading } from "./LoadingContext";
 import NetInfo from "@react-native-community/netinfo";
 import { saveInmate } from "./services/apiService";
 import { checkInternetConnection } from "./NetworkUtils/NetworkUtils";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const screenWidth = Dimensions.get("window").width;
 const buttonWidth = (screenWidth - 60) / 2;
@@ -48,19 +47,9 @@ const AddFederal = () => {
         if (response) {
             setIsLoading(false);
             if (response?.customcode == 200) {
-                try {
-                    await AsyncStorage.setItem('inmateId', String(response.data.id));
-                } catch (e) {
-                    console.error('Failed to save inmate ID:', e);
-                }
-                navigation.navigate("SendPhotos", { inmate, isVisibleBuyNow: true })
+                navigation.navigate("SendPhotos", { inmate, isVisibleBuyNow: true, inmateId: String(response.data.id) })
             } else if (response?.customcode == 207) {
-                try {
-                    await AsyncStorage.setItem('inmateId', String(response.data.id));
-                } catch (e) {
-                    console.error('Failed to save inmate ID:', e);
-                }
-                navigation.navigate("SendPhotos", { inmate, isVisibleBuyNow: true })
+                navigation.navigate("SendPhotos", { inmate, isVisibleBuyNow: true, inmateId: String(response.data.id) })
             } else if (response?.customcode == 401) {
                 Alert.alert(
                     "Alert!",

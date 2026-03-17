@@ -6,7 +6,6 @@ import Storage from "./utils/storage";
 import { checkInternetConnection } from "./NetworkUtils/NetworkUtils";
 import { checkoutOrder, uploadImage } from "./services/apiService";
 import { useLoading } from "./LoadingContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { pick } from '@react-native-documents/picker';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 
@@ -21,14 +20,14 @@ const ImportPhotosScreen = ({ route }) => {
     ]);
     const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
-    const { inmate, inmateId: routeInmateId } = route.params;
+    const { inmate, inmateId: routeInmateId, planId: routePlanId } = route.params;
     const [fullName, setFullName] = useState("");
     const [isUploading, setIsUploading] = useState(false);
     const { setIsLoading } = useLoading();
     const finalImagesRef = useRef([]);
     const [inmateId, setInmateId] = useState(routeInmateId || "");
     const [customerId, setCustomerId] = useState("");
-    const [planId, setPlanId] = useState("");
+    const [planId, setPlanId] = useState(routePlanId || "");
     let intArray = [];
     const [imageUri, setImageUri] = useState(null);
 
@@ -41,22 +40,6 @@ const ImportPhotosScreen = ({ route }) => {
             }
         };
         fetchUserData();
-    }, []);
-    useEffect(() => {
-        const getPlanId = async () => {
-            try {
-                const storedId = await AsyncStorage.getItem('planID');
-                if (storedId !== null) {
-                    setPlanId(storedId);
-                    console.log('Fetched planID:', storedId);
-                } else {
-                    console.log('No planID found');
-                }
-            } catch (e) {
-                console.error('Failed to fetch planID:', e);
-            }
-        };
-        getPlanId();
     }, []);
     const selectImage = () => {
         ImagePicker.launchImageLibrary(

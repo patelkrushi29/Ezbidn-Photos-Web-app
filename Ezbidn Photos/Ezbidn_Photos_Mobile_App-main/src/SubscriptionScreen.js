@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 import { pricingTierst } from "./services/apiService";
 import { useLoading } from "./LoadingContext";
 import { checkInternetConnection } from "./NetworkUtils/NetworkUtils";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SubscriptionScreen = ({ route }) => {
     const navigation = useNavigation();
@@ -24,14 +23,8 @@ const SubscriptionScreen = ({ route }) => {
                 </View>
                 <View style={styles.buttonRow}>
                     {route.params?.isVisibleBuyNow && (
-                        <TouchableOpacity style={[styles.button]} onPress={async () => {
-                            try {
-                                await AsyncStorage.setItem('planID', String(inmate.id));
-                                const savedInmateId = await AsyncStorage.getItem('inmateId');
-                                navigation.navigate("ImportPhotos", { inmate, inmateId: savedInmateId });
-                            } catch (e) {
-                                console.error('Failed to save inmate ID:', e);
-                            }
+                        <TouchableOpacity style={[styles.button]} onPress={() => {
+                            navigation.navigate("ImportPhotos", { inmate, inmateId: route.params?.inmateId, planId: String(inmate.id) });
                         }}>
                             <Text style={styles.buttonText}>
                                 {"Buy Now"}
