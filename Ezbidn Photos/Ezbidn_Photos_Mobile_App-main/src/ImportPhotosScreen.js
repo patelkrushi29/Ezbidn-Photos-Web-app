@@ -21,12 +21,12 @@ const ImportPhotosScreen = ({ route }) => {
     ]);
     const [image, setImage] = useState(null);
     const [images, setImages] = useState([]);
-    const { inmate } = route.params;
+    const { inmate, inmateId: routeInmateId } = route.params;
     const [fullName, setFullName] = useState("");
     const [isUploading, setIsUploading] = useState(false);
     const { setIsLoading } = useLoading();
     const finalImagesRef = useRef([]);
-    const [inmateId, setInmateId] = useState("");
+    const [inmateId, setInmateId] = useState(routeInmateId || "");
     const [customerId, setCustomerId] = useState("");
     const [planId, setPlanId] = useState("");
     let intArray = [];
@@ -41,23 +41,6 @@ const ImportPhotosScreen = ({ route }) => {
             }
         };
         fetchUserData();
-    }, []);
-    useEffect(() => {
-        const getInmateId = async () => {
-            try {
-                const storedId = await AsyncStorage.getItem('inmateId');
-                if (storedId !== null) {
-                    setInmateId(storedId);
-                    console.log('Fetched inmateId:', storedId);
-                } else {
-                    console.log('No inmateId found');
-                }
-            } catch (e) {
-                console.error('Failed to fetch inmate ID:', e);
-            }
-        };
-
-        getInmateId();
     }, []);
     useEffect(() => {
         const getPlanId = async () => {

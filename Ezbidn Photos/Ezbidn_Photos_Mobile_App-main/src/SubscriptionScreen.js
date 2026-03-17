@@ -27,7 +27,8 @@ const SubscriptionScreen = ({ route }) => {
                         <TouchableOpacity style={[styles.button]} onPress={async () => {
                             try {
                                 await AsyncStorage.setItem('planID', String(inmate.id));
-                                navigation.navigate("ImportPhotos", { inmate });
+                                const savedInmateId = await AsyncStorage.getItem('inmateId');
+                                navigation.navigate("ImportPhotos", { inmate, inmateId: savedInmateId });
                             } catch (e) {
                                 console.error('Failed to save inmate ID:', e);
                             }
