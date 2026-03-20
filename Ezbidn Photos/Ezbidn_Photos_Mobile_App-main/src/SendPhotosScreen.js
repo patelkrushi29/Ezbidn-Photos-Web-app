@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, Alert, Modal, FlatList, View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useLoading } from "./LoadingContext";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkInternetConnection } from "./NetworkUtils/NetworkUtils";
 import { getInmateDetailById } from "./services/apiService";
 
@@ -57,7 +56,7 @@ const ListItem = ({ item }) => (
 const SendPhotosScreen = ({ route }) => {
     const navigation = useNavigation();
     const [modalVisible, setModalVisible] = useState(false);
-    const { inmate: inmateData, isVisibleBuyNow } = route.params;
+    const { inmate: inmateData, isVisibleBuyNow, inmateId: routeInmateId } = route.params;
     const { setIsLoading } = useLoading();
     const profile = isVisibleBuyNow ? inmateData.inamteProfile : inmateData;
     const [inmateDetailsData, setInmateData] = useState(null);
@@ -71,10 +70,9 @@ const SendPhotosScreen = ({ route }) => {
         }
         setIsLoading(true);
         try {
-            const storedId = await AsyncStorage.getItem('inmateId');
-            console.log("storedId:", profile.id)
+            console.log("inmateId:", profile.id)
 
-            const inmateIdToUse = profile.id ? profile.id : storedId;
+            const inmateIdToUse = profile.id ? profile.id : routeInmateId;
             const response = await getInmateDetailById(inmateIdToUse);
             setIsLoading(false);
             if (response?.customcode === 200) {
@@ -182,17 +180,11 @@ const SendPhotosScreen = ({ route }) => {
                             />
                             <TouchableOpacity
                                 style={styles.closeButton}
-                                onPress={async () => {
-                                    if (!route.params?.isVisibleBuyNow) {
-                                        try {
-                                            await AsyncStorage.setItem('inmateId', String(inmateData.id));
-                                        } catch (e) {
-                                            console.error('Failed to save inmate ID:', e);
-                                        }
-                                    }
+                                onPress={() => {
+                                    const inmateIdToPass = routeInmateId || String(inmateData.id);
                                     setModalVisible(false);
                                     setTimeout(() => {
-                                        navigation.navigate("Subscriptions", { isVisibleBuyNow: true });
+                                        navigation.navigate("Subscriptions", { isVisibleBuyNow: true, inmateId: inmateIdToPass });
                                     }, 1000); // 2 seconds delay
                                 }}
                             >
