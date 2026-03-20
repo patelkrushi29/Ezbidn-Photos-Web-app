@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Linking, Alert, SafeAreaView, FlatList, KeyboardAvoidingView, ScrollView, View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { Linking, Alert, SafeAreaView, KeyboardAvoidingView, ScrollView, View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as ImagePicker from "react-native-image-picker";
 import Storage from "./utils/storage";
@@ -305,20 +305,16 @@ const ImportPhotosScreen = ({ route }) => {
                         </View>
                         <View style={{ padding: 10 }}>
                             <Text style={styles.title}>Photo Preview</Text>
-                            <FlatList
-                                data={images}
-                                keyExtractor={(item, index) => item + index}
-                                renderItem={renderItem}
-                                numColumns={2}
-                                columnWrapperStyle={{ justifyContent: 'space-between' }}
-                                contentContainerStyle={{ gap: 10 }}
-                            />
-
-                            {/* {images.length < MAX_IMAGES && (
-                            <TouchableOpacity onPress={selectImage} style={styles.addButton}>
-                                <Text style={styles.addText}>View More Photos</Text>
-                            </TouchableOpacity>
-                        )} */}
+                            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+                                {images.map((item, index) => (
+                                    <View key={item + index} style={styles.imageContainer}>
+                                        <Image source={{ uri: item }} style={styles.pickerImage} />
+                                        <TouchableOpacity style={styles.crossButton} onPress={() => removeImage(item)}>
+                                            <Image source={require('../assets/redCross.png')} style={styles.crossImage} />
+                                        </TouchableOpacity>
+                                    </View>
+                                ))}
+                            </View>
                         </View>
 
                         {/* Next Button */}

@@ -94,7 +94,7 @@ const OrdersScreen = ({ }) => {
   return (
     <FlatList
       data={ordersList}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item, index) => item.order_id?.toString() ?? index.toString()}
       renderItem={({ item }) => <OrderItem inmate={item} />}
       contentContainerStyle={styles.list}
     />
